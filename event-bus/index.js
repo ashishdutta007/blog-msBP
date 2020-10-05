@@ -5,8 +5,16 @@ const bodyParser = require("body-parser");
 const app = express();
 app.use(bodyParser.json());
 
+const events = [];
+
+app.get("/events", (req, res) => {
+  res.send(events).status(200);
+});
+
 app.post("/events", (req, res) => {
   const event = req.body;
+
+  events.push(event);
 
   try {
     axios.post("http://localhost:4000/events", event);
