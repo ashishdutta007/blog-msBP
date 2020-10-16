@@ -1,0 +1,25 @@
+# K8 objects in api version
+apiVersion: apps/v1
+# K8 object
+kind: Deployment
+metadata:
+  name: event-bus-depl
+# Deployment specs/behaviour
+spec:
+  # No of pods to be created
+  replicas: 1
+  # Selector for K8 Deployment to find matching pods
+  # among the created pods, which it is to manage
+  selector:
+    matchLabels:
+      app: event-bus
+  # Pod creation template, app-label:event-bus
+  template:
+    metadata:
+      labels:
+        app: event-bus
+    # Pod spec
+    spec:
+      containers:
+        - name: event-bus
+          image: theokeles050/event-bus:latest
