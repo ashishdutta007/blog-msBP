@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+# K8 Service meta inf
+metadata:
+  name: posts-srv
+spec:
+  type: NodePort
+  # Set of Pods to be exposed by NodePort
+  selector:
+    app: posts
+  # Ports to be exposed
+  ports:
+    - name: posts
+      protocol: TCP
+      # NodePort Service port
+      port: 4000
+      # App port running in container
+      targetPort: 4000

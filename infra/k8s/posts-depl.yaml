@@ -1,0 +1,25 @@
+# K8 objects in api version
+apiVersion: apps/v1
+# K8 object
+kind: Deployment
+metadata:
+  name: posts-depl
+# Deployment specs/behaviour
+spec:
+  # No of pods to be created
+  replicas: 1
+  # Selector for K8 Deployment to find matching pods
+  # among the created pods, which it is to manage
+  selector:
+    matchLabels:
+      app: posts
+  # Pod creation template, app-label:posts
+  template:
+    metadata:
+      labels:
+        app: posts
+    # Pod spec
+    spec:
+      containers:
+        - name: posts
+          image: theokeles050/posts:latest
